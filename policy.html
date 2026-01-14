@@ -1,330 +1,222 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Policy Info - Dayinsure</title>
-    <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #0B9FD8 0%, #0052A5 100%);
-        }
-        header { background: #FFFFFF; }
-        .header-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 24px;
-            height: 96px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        .logo { height: 70px; }
-        .logout-btn {
-            padding: 10px 24px;
-            background: #E91E8C;
-            color: #FFFFFF;
-            border: none;
-            border-radius: 8px;
-            font-weight: 600;
-            font-size: 15px;
-            cursor: pointer;
-        }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 48px 24px;
-        }
-        h1 {
-            font-size: 28px;
-            font-weight: 400;
-            color: #FFFFFF;
-            text-align: center;
-            margin-bottom: 48px;
-        }
-        .card {
-            background: rgba(0, 60, 120, 0.35);
-            border-radius: 12px;
-            padding: 32px;
-            margin-bottom: 24px;
-        }
-        h2 {
-            font-size: 22px;
-            font-weight: 400;
-            color: #FFFFFF;
-            margin-bottom: 24px;
-        }
-        .badge {
-            display: inline-block;
-            padding: 6px 12px;
-            background: rgba(255, 255, 255, 0.25);
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 12px;
-        }
-        .info-row {
-            margin-bottom: 20px;
-        }
-        .info-label {
-            font-size: 13px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
-        }
-        .info-value {
-            font-size: 16px;
-            color: #FFFFFF;
-            font-weight: 400;
-        }
-        .grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 24px;
-        }
-        .price-box {
-            background: #0052A5;
-            border-radius: 12px;
-            padding: 32px;
-            text-align: center;
-            margin-top: 32px;
-        }
-        .price-label {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-            margin-bottom: 8px;
-        }
-        .price {
-            font-size: 32px;
-            font-weight: 600;
-            color: #FFFFFF;
-            margin-bottom: 8px;
-        }
-        footer {
-            background: #0052A5;
-            padding: 48px 24px;
-            margin-top: 48px;
-            text-align: center;
-            color: #FFFFFF;
-        }
-        @media (max-width: 768px) {
-            .grid { grid-template-columns: 1fr; }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Policy Info – Dayinsure</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #0B9FD8 0%, #0052A5 100%);
+      color: #fff;
+    }
+
+    header {
+      background: #fff;
+      padding: 20px;
+      text-align: center;
+    }
+
+    header img {
+      height: 60px;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      text-align: center;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+
+    .card {
+      background: rgba(0, 60, 120, 0.35);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-weight: 400;
+      margin-bottom: 16px;
+    }
+
+    .label {
+      font-size: 13px;
+      opacity: 0.75;
+      margin-bottom: 4px;
+    }
+
+    .value {
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .price-box {
+      background: #0052A5;
+      border-radius: 12px;
+      padding: 32px;
+      text-align: center;
+    }
+
+    .price {
+      font-size: 32px;
+      font-weight: 600;
+    }
+
+    footer {
+      background: #0052A5;
+      padding: 30px;
+      text-align: center;
+      font-size: 13px;
+      opacity: 0.85;
+    }
+
+    @media (max-width: 768px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+  </style>
 </head>
+
 <body>
-    <header>
-        <div class="header-content">
-            <img id="logo" src="" alt="Dayinsure" class="logo">
-            <a href="index.html" style="text-decoration: none;">
-                <button class="logout-btn">Log out</button>
-            </a>
-        </div>
-    </header>
 
-    <div class="container">
-        <h1>Policy info</h1>
+<header>
+  <img id="logo" src="" alt="Dayinsure"/>
+</header>
 
-        <!-- Vehicle Section -->
-        <div class="card">
-            <h2>Vehicle</h2>
-            <div class="badge" id="vehicleReg"></div>
-            <div class="info-value" id="vehicleMakeModel"></div>
-        </div>
+<div class="container">
+  <h1>Policy Information</h1>
 
-        <!-- Cover Dates Section -->
-        <div class="grid">
-            <div class="card">
-                <h2>Cover start</h2>
-                <div class="info-row">
-                    <div class="info-label">Date</div>
-                    <div class="info-value" id="coverStartDate"></div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Time (local UK time)</div>
-                    <div class="info-value" id="coverStartTime"></div>
-                </div>
-            </div>
+  <div class="card">
+    <h2>Vehicle</h2>
+    <div class="value" id="vehicleReg"></div>
+    <div class="value" id="vehicleMakeModel"></div>
+  </div>
 
-            <div class="card">
-                <h2>Cover end</h2>
-                <div class="info-row">
-                    <div class="info-label">Date</div>
-                    <div class="info-value" id="coverEndDate"></div>
-                </div>
-                <div class="info-row">
-                    <div class="info-label">Time (local UK time)</div>
-                    <div class="info-value" id="coverEndTime"></div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Driver Section -->
-        <div class="card">
-            <h2>Driver</h2>
-            <div class="info-row">
-                <div class="info-label">Name</div>
-                <div class="info-value" id="driverName"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Date of birth</div>
-                <div class="info-value" id="driverDob"></div>
-            </div>
-        </div>
-
-        <!-- Contact Details Section -->
-        <div class="card">
-            <h2>Contact details</h2>
-            <div class="info-row">
-                <div class="info-label">Email address</div>
-                <div class="info-value" id="emailAddress"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Contact number</div>
-                <div class="info-value" id="phoneNumber"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Home address</div>
-                <div class="info-value" id="homeAddress"></div>
-            </div>
-        </div>
-
-        <!-- Cover Section -->
-        <div class="card">
-            <h2>Cover</h2>
-            <div class="info-row">
-                <div class="info-label">Cover type</div>
-                <div class="info-value" id="coverType"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Product</div>
-                <div class="info-value" id="productType"></div>
-            </div>
-            <div class="info-row">
-                <div class="info-label">Insurer</div>
-                <div class="info-value" id="insurerName"></div>
-            </div>
-        </div>
-
-        <!-- Price Section -->
-        <div class="price-box">
-            <div class="price-label">Total price</div>
-            <div class="price" id="totalPrice"></div>
-            <div style="font-size: 14px;">Compulsory excess <span id="excessAmount"></span> (including glass)</div>
-        </div>
+  <div class="grid">
+    <div class="card">
+      <h2>Cover Start</h2>
+      <div class="label">Date</div>
+      <div class="value" id="coverStartDate"></div>
+      <div class="label">Time</div>
+      <div class="value" id="coverStartTime"></div>
     </div>
 
-    <footer>
-        <p id="footerText" style="font-size: 13px; max-width: 900px; margin: 0 auto; opacity: 0.85;"></p>
-    </footer>
+    <div class="card">
+      <h2>Cover End</h2>
+      <div class="label">Date</div>
+      <div class="value" id="coverEndDate"></div>
+      <div class="label">Time</div>
+      <div class="value" id="coverEndTime"></div>
+    </div>
+  </div>
 
-    <!-- Load external config file -->
-    <script src="config.js"></script>
+  <div class="card">
+    <h2>Driver</h2>
+    <div class="label">Name</div>
+    <div class="value" id="driverName"></div>
+    <div class="label">Date of Birth</div>
+    <div class="value" id="driverDob"></div>
+  </div>
 
-    <script>
-        // ============================================
-        // POPULATE PAGE WITH CONFIG VALUES
-        // ============================================
-        function populatePage() {
-            // Logo
-            document.getElementById('logo').src = policyConfig.logoUrl;
+  <div class="card">
+    <h2>Contact Details</h2>
+    <div class="label">Email</div>
+    <div class="value" id="emailAddress"></div>
+    <div class="label">Phone</div>
+    <div class="value" id="phoneNumber"></div>
+    <div class="label">Address</div>
+    <div class="value" id="homeAddress"></div>
+  </div>
 
-            // Vehicle
-            document.getElementById('vehicleReg').textContent = policyConfig.vehicleReg;
-            document.getElementById('vehicleMakeModel').textContent = policyConfig.vehicleMakeModel;
+  <div class="card">
+    <h2>Cover</h2>
+    <div class="label">Cover Type</div>
+    <div class="value" id="coverType"></div>
+    <div class="label">Product</div>
+    <div class="value" id="productType"></div>
+    <div class="label">Insurer</div>
+    <div class="value" id="insurerName"></div>
+  </div>
 
-            // Cover Dates
-            document.getElementById('coverStartDate').textContent = policyConfig.coverStartDate;
-            document.getElementById('coverStartTime').textContent = policyConfig.coverStartTime;
-            document.getElementById('coverEndDate').textContent = policyConfig.coverEndDate;
-            document.getElementById('coverEndTime').textContent = policyConfig.coverEndTime;
+  <div class="price-box">
+    <div class="label">Total Price</div>
+    <div class="price" id="totalPrice"></div>
+    <div class="label">Excess</div>
+    <div class="value" id="excessAmount"></div>
+  </div>
+</div>
 
-            // Driver
-            document.getElementById('driverName').textContent = policyConfig.driverName;
-            document.getElementById('driverDob').textContent = policyConfig.driverDob;
-
-            // Contact
-            document.getElementById('emailAddress').textContent = policyConfig.emailAddress;
-            document.getElementById('phoneNumber').textContent = policyConfig.phoneNumber;
-            document.getElementById('homeAddress').textContent = policyConfig.homeAddress;
-
-            // Cover
-            document.getElementById('coverType').textContent = policyConfig.coverType;
-            document.getElementById('productType').textContent = policyConfig.productType;
-            document.getElementById('insurerName').textContent = policyConfig.insurerName;
-
-            // Pricing
-            document.getElementById('totalPrice').textContent = policyConfig.totalPrice;
-            document.getElementById('excessAmount').textContent = policyConfig.excessAmount;
-
-            // Footer
-            document.getElementById('footerText').textContent = policyConfig.footerText;
-        }
-
-        // Run when page loads
-        document.addEventListener('DOMContentLoaded', populatePage);
-    </script>
+<footer id="footerText"></footer>
 
 <script>
 (async function () {
+
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
 
   if (!token) {
-    document.body.innerHTML = "<h2>Invalid or missing policy link.</h2>";
+    document.body.innerHTML = "<h2 style='padding:40px;'>Invalid or missing policy link</h2>";
     return;
   }
 
-  const bubbleBase = "https://sonnylomo2.bubbleapps.io";
-  const apiUrl = `${bubbleBase}/api/1.1/wf/get_policy_public?token=${encodeURIComponent(token)}`;
+  const apiUrl =
+    "https://sonnylomo2.bubbleapps.io/api/1.1/wf/get_policy_public?token=" +
+    encodeURIComponent(token);
 
   try {
     const res = await fetch(apiUrl);
-    if (!res.ok) throw new Error("Invalid response");
+    if (!res.ok) throw new Error();
 
     const json = await res.json();
-    const policy =
-      json.response?.policy ||
-      json.response ||
-      json.policy ||
-      json;
+    const policy = json.response?.policy || json.response || json;
 
-    if (document.getElementById("policy_number"))
-      document.getElementById("policy_number").textContent =
-        policy.policy_number || "";
+    document.getElementById("logo").src = policy.logoUrl || "";
 
-    if (document.getElementById("full_name"))
-      document.getElementById("full_name").textContent =
-        `${policy.first_name || ""} ${policy.last_name || ""}`.trim();
+    document.getElementById("vehicleReg").textContent = policy.vehicleReg || "";
+    document.getElementById("vehicleMakeModel").textContent = policy.vehicleMakeModel || "";
 
-    if (document.getElementById("policy_start"))
-      document.getElementById("policy_start").textContent =
-        policy.start_date || "";
+    document.getElementById("coverStartDate").textContent = policy.coverStartDate || "";
+    document.getElementById("coverStartTime").textContent = policy.coverStartTime || "";
+    document.getElementById("coverEndDate").textContent = policy.coverEndDate || "";
+    document.getElementById("coverEndTime").textContent = policy.coverEndTime || "";
 
-    if (document.getElementById("policy_end"))
-      document.getElementById("policy_end").textContent =
-        policy.end_date || "";
+    document.getElementById("driverName").textContent = policy.driverName || "";
+    document.getElementById("driverDob").textContent = policy.driverDob || "";
 
-    if (document.getElementById("vehicle"))
-      document.getElementById("vehicle").textContent =
-        policy.vehicle || "";
+    document.getElementById("emailAddress").textContent = policy.emailAddress || "";
+    document.getElementById("phoneNumber").textContent = policy.phoneNumber || "";
+    document.getElementById("homeAddress").textContent = policy.homeAddress || "";
 
-    if (document.getElementById("premium"))
-      document.getElementById("premium").textContent =
-        policy.premium || "";
+    document.getElementById("coverType").textContent = policy.coverType || "";
+    document.getElementById("productType").textContent = policy.productType || "";
+    document.getElementById("insurerName").textContent = policy.insurerName || "";
 
-    const downloadBtn = document.getElementById("download_certificate");
-    if (downloadBtn && policy.certificate_pdf_url) {
-      downloadBtn.href = policy.certificate_pdf_url;
-      downloadBtn.style.display = "inline-block";
-    }
+    document.getElementById("totalPrice").textContent = policy.totalPrice || "";
+    document.getElementById("excessAmount").textContent = policy.excessAmount || "";
 
-  } catch (err) {
-    document.body.innerHTML = "<h2>Invalid or expired policy link.</h2>";
+    document.getElementById("footerText").textContent = policy.footerText || "";
+
+  } catch {
+    document.body.innerHTML = "<h2 style='padding:40px;'>Invalid or expired policy link</h2>";
   }
 })();
 </script>
+
 </body>
 </html>
+
