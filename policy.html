@@ -143,53 +143,62 @@
 <footer>
   This policy is issued by Dayinsure. Please keep this page for your records.
 </footer>
-
 <script>
 (async function () {
-
-  // 1. Get token from URL
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
 
-  if (!token) {
-    document.body.innerHTML = "<h2 style='text-align:center'>Invalid policy link</h2>";
-    return;
+  function fail(msg) {
+    document.body.innerHTML = `
+      <div style="padding:24px;color:#fff;font-family:Arial">
+        <h2>Invalid policy link</h2>
+        <p style="opacity:.9">${msg}</p>
+      </div>`;
   }
 
-  // 2. Bubble backend endpoint
-  const BUBBLE_BASE = "https://sonnylomo2.bubbleapps.io/version-test";
-  const API_URL = `${BUBBLE_BASE}/api/1.1/wf/get_policy_public?token=${encodeURIComponent(token)}`;
+  if (!token) return fail("Missing token in URL.");
+
+  // IMPORTANT:
+  // Use LIVE if policies are created on live bubble app
+  const bubbleBase = "https://sonnylomo2.bubbleapps.io";
+  const apiUrl = `${bubbleBase}/api/1.1/wf/get_policy_public`;
 
   try {
-    const res = await fetch(API_URL);
-    if (!res.ok) throw new Error("Bad response");
+    const res = await fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/x-www-form-urlencoded" },
+      body: new URLSearchParams({ token }).toString()
+    });
 
-    const data = await res.json();
-    const policy = data.response?.policy || data.policy || data;
+    const text = await res.text();
 
-    // 3. Populate page
-    document.getElementById("policy_number").textContent = policy.policy_number || "";
-    document.getElementById("driver_name").textContent =
-      `${policy.first_name || ""} ${policy.last_name || ""}`.trim();
+    if (!res.ok) {
+      return fail(`Bubble returned ${res.status}. Response: ${text.slice(0, 200)}`);
+    }
 
-    document.getElementById("dob").textContent = policy.date_of_birth || "";
-    document.getElementById("vehicle").textContent =
-      `${policy.vehicle_make || ""} ${policy.vehicle_model || ""}`.trim();
+    let json;
+    try { json = JSON.parse(text); }
+    catch { return fail("Bubble did not return JSON. Raw: " + text.slice(0, 200)); }
 
-    document.getElementById("vehicle_reg").textContent = policy.vehicle_registration || "";
-    document.getElementById("start_date").textContent = policy.policy_start_datetime || "";
-    document.getElementById("end_date").textContent = policy.policy_end_datetime || "";
-    document.getElementById("email").textContent = policy.email_address || "";
-    document.getElementById("phone").textContent = policy.phone || "";
-    document.getElementById("address").textContent = policy.address || "";
-    document.getElementById("premium").textContent = policy.premium_amount || "";
+    const policy = json.response?.policy || json.policy || json.response || json;
+
+    if (!policy) return fail("No policy object returned from Bubble.");
+
+    // DEBUG: show success quickly (remove later)
+    console.log("POLICY:", policy);
+
+    // TODO: map Bubble fields into your page IDs here
+    // Example:
+    // document.getElementById("driverName").textContent =
+    //   `${policy.first_name || ""} ${policy.last_name || ""}`.trim();
 
   } catch (err) {
-    document.body.innerHTML = "<h2 style='text-align:center'>Policy not found or expired</h2>";
+    // This is where CORS errors land
+    return fail("Fetch failed (usually CORS). Error: " + err.message);
   }
-
 })();
 </script>
+
 
 </body>
 </html>
