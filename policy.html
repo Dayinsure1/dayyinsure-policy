@@ -2,90 +2,77 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Policy Info – Dayinsure</title>
+  <title>Policy Information – Dayinsure</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
+    * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
-      font-family: Arial, Helvetica, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
       min-height: 100vh;
-      background: linear-gradient(135deg, #0B9FD8 0%, #0052A5 100%);
+      background: linear-gradient(135deg, #0B9FD8, #0052A5);
       color: #fff;
     }
-
     header {
       background: #fff;
-      padding: 20px;
-      text-align: center;
+      padding: 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
-
-    header img {
-      height: 60px;
+    header img { height: 60px; }
+    header a button {
+      background: #E91E8C;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      font-weight: 600;
+      cursor: pointer;
     }
-
     .container {
-      max-width: 800px;
+      max-width: 900px;
       margin: 0 auto;
-      padding: 40px 20px;
+      padding: 48px 24px;
     }
-
     h1 {
       text-align: center;
       font-weight: 400;
       margin-bottom: 40px;
     }
-
     .card {
-      background: rgba(0, 60, 120, 0.35);
+      background: rgba(0,0,0,0.25);
       border-radius: 12px;
       padding: 24px;
       margin-bottom: 24px;
     }
-
-    h2 {
-      font-weight: 400;
-      margin-bottom: 16px;
-    }
-
     .label {
       font-size: 13px;
-      opacity: 0.75;
-      margin-bottom: 4px;
+      opacity: 0.7;
+      margin-bottom: 6px;
     }
-
     .value {
       font-size: 16px;
       margin-bottom: 16px;
     }
-
     .grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 24px;
     }
-
-    .price-box {
-      background: #0052A5;
-      border-radius: 12px;
-      padding: 32px;
-      text-align: center;
-    }
-
     .price {
       font-size: 32px;
       font-weight: 600;
-    }
-
-    footer {
-      background: #0052A5;
-      padding: 30px;
       text-align: center;
+    }
+    footer {
+      margin-top: 48px;
+      padding: 32px;
+      text-align: center;
+      background: rgba(0,0,0,0.2);
       font-size: 13px;
       opacity: 0.85;
     }
-
     @media (max-width: 768px) {
       .grid { grid-template-columns: 1fr; }
     }
@@ -95,128 +82,114 @@
 <body>
 
 <header>
-  <img id="logo" src="" alt="Dayinsure"/>
+  <img src="https://your-logo-url-here.png" alt="Dayinsure">
+  <a href="/">
+    <button>Log out</button>
+  </a>
 </header>
 
 <div class="container">
   <h1>Policy Information</h1>
 
   <div class="card">
-    <h2>Vehicle</h2>
-    <div class="value" id="vehicleReg"></div>
-    <div class="value" id="vehicleMakeModel"></div>
+    <div class="label">Policy Number</div>
+    <div class="value" id="policy_number">—</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Driver</div>
+    <div class="value" id="driver_name">—</div>
+
+    <div class="label">Date of birth</div>
+    <div class="value" id="dob">—</div>
+  </div>
+
+  <div class="card">
+    <div class="label">Vehicle</div>
+    <div class="value" id="vehicle">—</div>
+
+    <div class="label">Registration</div>
+    <div class="value" id="vehicle_reg">—</div>
   </div>
 
   <div class="grid">
     <div class="card">
-      <h2>Cover Start</h2>
-      <div class="label">Date</div>
-      <div class="value" id="coverStartDate"></div>
-      <div class="label">Time</div>
-      <div class="value" id="coverStartTime"></div>
+      <div class="label">Cover start</div>
+      <div class="value" id="start_date">—</div>
     </div>
-
     <div class="card">
-      <h2>Cover End</h2>
-      <div class="label">Date</div>
-      <div class="value" id="coverEndDate"></div>
-      <div class="label">Time</div>
-      <div class="value" id="coverEndTime"></div>
+      <div class="label">Cover end</div>
+      <div class="value" id="end_date">—</div>
     </div>
   </div>
 
   <div class="card">
-    <h2>Driver</h2>
-    <div class="label">Name</div>
-    <div class="value" id="driverName"></div>
-    <div class="label">Date of Birth</div>
-    <div class="value" id="driverDob"></div>
-  </div>
-
-  <div class="card">
-    <h2>Contact Details</h2>
     <div class="label">Email</div>
-    <div class="value" id="emailAddress"></div>
+    <div class="value" id="email">—</div>
+
     <div class="label">Phone</div>
-    <div class="value" id="phoneNumber"></div>
+    <div class="value" id="phone">—</div>
+
     <div class="label">Address</div>
-    <div class="value" id="homeAddress"></div>
+    <div class="value" id="address">—</div>
   </div>
 
   <div class="card">
-    <h2>Cover</h2>
-    <div class="label">Cover Type</div>
-    <div class="value" id="coverType"></div>
-    <div class="label">Product</div>
-    <div class="value" id="productType"></div>
-    <div class="label">Insurer</div>
-    <div class="value" id="insurerName"></div>
-  </div>
-
-  <div class="price-box">
-    <div class="label">Total Price</div>
-    <div class="price" id="totalPrice"></div>
-    <div class="label">Excess</div>
-    <div class="value" id="excessAmount"></div>
+    <div class="label">Total Premium</div>
+    <div class="price" id="premium">—</div>
   </div>
 </div>
 
-<footer id="footerText"></footer>
+<footer>
+  This policy is issued by Dayinsure. Please keep this page for your records.
+</footer>
 
 <script>
 (async function () {
 
+  // 1. Get token from URL
   const params = new URLSearchParams(window.location.search);
   const token = params.get("token");
 
   if (!token) {
-    document.body.innerHTML = "<h2 style='padding:40px;'>Invalid or missing policy link</h2>";
+    document.body.innerHTML = "<h2 style='text-align:center'>Invalid policy link</h2>";
     return;
   }
 
-  const apiUrl =
-    "https://sonnylomo2.bubbleapps.io/api/1.1/wf/get_policy_public?token=" +
-    encodeURIComponent(token);
+  // 2. Bubble backend endpoint
+  const BUBBLE_BASE = "https://sonnylomo2.bubbleapps.io";
+  const API_URL = `${BUBBLE_BASE}/api/1.1/wf/get_policy_public?token=${encodeURIComponent(token)}`;
 
   try {
-    const res = await fetch(apiUrl);
-    if (!res.ok) throw new Error();
+    const res = await fetch(API_URL);
+    if (!res.ok) throw new Error("Bad response");
 
-    const json = await res.json();
-    const policy = json.response?.policy || json.response || json;
+    const data = await res.json();
+    const policy = data.response?.policy || data.policy || data;
 
-    document.getElementById("logo").src = policy.logoUrl || "";
+    // 3. Populate page
+    document.getElementById("policy_number").textContent = policy.policy_number || "";
+    document.getElementById("driver_name").textContent =
+      `${policy.first_name || ""} ${policy.last_name || ""}`.trim();
 
-    document.getElementById("vehicleReg").textContent = policy.vehicleReg || "";
-    document.getElementById("vehicleMakeModel").textContent = policy.vehicleMakeModel || "";
+    document.getElementById("dob").textContent = policy.date_of_birth || "";
+    document.getElementById("vehicle").textContent =
+      `${policy.vehicle_make || ""} ${policy.vehicle_model || ""}`.trim();
 
-    document.getElementById("coverStartDate").textContent = policy.coverStartDate || "";
-    document.getElementById("coverStartTime").textContent = policy.coverStartTime || "";
-    document.getElementById("coverEndDate").textContent = policy.coverEndDate || "";
-    document.getElementById("coverEndTime").textContent = policy.coverEndTime || "";
+    document.getElementById("vehicle_reg").textContent = policy.vehicle_registration || "";
+    document.getElementById("start_date").textContent = policy.policy_start_datetime || "";
+    document.getElementById("end_date").textContent = policy.policy_end_datetime || "";
+    document.getElementById("email").textContent = policy.email_address || "";
+    document.getElementById("phone").textContent = policy.phone || "";
+    document.getElementById("address").textContent = policy.address || "";
+    document.getElementById("premium").textContent = policy.premium_amount || "";
 
-    document.getElementById("driverName").textContent = policy.driverName || "";
-    document.getElementById("driverDob").textContent = policy.driverDob || "";
-
-    document.getElementById("emailAddress").textContent = policy.emailAddress || "";
-    document.getElementById("phoneNumber").textContent = policy.phoneNumber || "";
-    document.getElementById("homeAddress").textContent = policy.homeAddress || "";
-
-    document.getElementById("coverType").textContent = policy.coverType || "";
-    document.getElementById("productType").textContent = policy.productType || "";
-    document.getElementById("insurerName").textContent = policy.insurerName || "";
-
-    document.getElementById("totalPrice").textContent = policy.totalPrice || "";
-    document.getElementById("excessAmount").textContent = policy.excessAmount || "";
-
-    document.getElementById("footerText").textContent = policy.footerText || "";
-
-  } catch {
-    document.body.innerHTML = "<h2 style='padding:40px;'>Invalid or expired policy link</h2>";
+  } catch (err) {
+    document.body.innerHTML = "<h2 style='text-align:center'>Policy not found or expired</h2>";
   }
+
 })();
 </script>
 
 </body>
 </html>
-
