@@ -160,8 +160,11 @@
 
   // IMPORTANT:
   // Use LIVE if policies are created on live bubble app
-  const bubbleBase = "https://sonnylomo2.bubbleapps.io";
-  const apiUrl = `${bubbleBase}/api/1.1/wf/get_policy_public`;
+ const bubbleBase = "https://sonnylomo2.bubbleapps.io"; // live domain
+const apiUrl = `${bubbleBase}/api/1.1/wf/get_policy_public?token=${encodeURIComponent(token)}`;
+
+const res = await fetch(apiUrl, { method: "GET" });
+
 
   try {
     const res = await fetch(apiUrl, {
