@@ -163,15 +163,32 @@
  const bubbleBase = "https://sonnylomo2.bubbleapps.io"; // live domain
 const apiUrl = `${bubbleBase}/api/1.1/wf/get_policy_public?token=${encodeURIComponent(token)}`;
 
-const res = await fetch(apiUrl, { method: "GET" });
+try {
+  const res = await fetch(apiUrl, { method: "GET" });
 
+  const text = await res.text();
 
-  try {
-    const res = await fetch(apiUrl, {
-      method: "POST",
-      headers: { "Content-Type": "application/x-www-form-urlencoded" },
-      body: new URLSearchParams({ token }).toString()
-    });
+  if (!res.ok) {
+    return fail(`Bubble returned ${res.status}. Response: ${text.slice(0,200)}`);
+  }
+
+  let json;
+  try { json = JSON.parse(text); }
+  catch { return fail("Bubble did not return JSON."); }
+
+  const policy =
+    json.response?.policy ||
+    json.policy ||
+    json.response ||
+    json;
+
+  if (!policy) return fail("No policy object returned from Bubble.");
+
+  console.log("POLICY:", policy);
+
+} catch (err) {
+  return fail("Fetch failed (usually CORS). Error: " + err.message);
+}
 
     const text = await res.text();
 
